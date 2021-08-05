@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/spaceship shooter .ogg-9d4e02e735a7121e234a2974ada69730.oggstr"
+
+[deps]
+
+source_file="res://assets/space_shooter_pack/spaceship shooter music/spaceship shooter .ogg"
+dest_files=[ "res://.import/spaceship shooter .ogg-9d4e02e735a7121e234a2974ada69730.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

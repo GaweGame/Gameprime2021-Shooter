@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/spaceship shooter .wav-5505cbb544b6ebcb6b30b8e78fda5505.sample"
+
+[deps]
+
+source_file="res://assets/space_shooter_pack/spaceship shooter music/spaceship shooter .wav"
+dest_files=[ "res://.import/spaceship shooter .wav-5505cbb544b6ebcb6b30b8e78fda5505.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

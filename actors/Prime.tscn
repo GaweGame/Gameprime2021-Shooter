@@ -1,0 +1,166 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://assets/space_shooter_pack/Graphics/spritesheets/ship.png" type="Texture" id=1]
+[ext_resource path="res://actors/Prime.gd" type="Script" id=2]
+[ext_resource path="res://actors/Prime-Weapon.gd" type="Script" id=3]
+[ext_resource path="res://actors/weapon_data/spread_weapon.tres" type="Resource" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 7 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Left"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 5 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Mid-Left"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 6 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Mid-Right"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 3, 8 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 9 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "Mid-Left"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "Left"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "Right"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "Mid-Right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=12]
+blend_point_0/node = SubResource( 6 )
+blend_point_0/pos = -0.1
+blend_point_1/node = SubResource( 7 )
+blend_point_1/pos = -0.5
+blend_point_2/node = SubResource( 8 )
+blend_point_2/pos = -0.9
+blend_point_3/node = SubResource( 9 )
+blend_point_3/pos = 0.1
+blend_point_4/node = SubResource( 10 )
+blend_point_4/pos = 0.9
+blend_point_5/node = SubResource( 11 )
+blend_point_5/pos = 0.5
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 1.67641, 2.00818 )
+
+[sub_resource type="CircleShape2D" id=14]
+
+[node name="Prime" type="KinematicBody2D"]
+collision_mask = 12
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 5
+vframes = 2
+frame = 2
+
+[node name="WeaponPoint" type="Position2D" parent="."]
+position = Vector2( 0, -16 )
+script = ExtResource( 3 )
+weapon_data = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 1 )
+anims/Left = SubResource( 2 )
+anims/Mid-Left = SubResource( 3 )
+anims/Mid-Right = SubResource( 4 )
+anims/Right = SubResource( 5 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 12 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/blend_position = 0.00292051
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.314987, -8.03198 )
+shape = SubResource( 13 )
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+shape = SubResource( 14 )
+shape_centered = false
+
+[connection signal="pressed" from="TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]
+[connection signal="released" from="TouchScreenButton" to="." method="_on_TouchScreenButton_released"]
