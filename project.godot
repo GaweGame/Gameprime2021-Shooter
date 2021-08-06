@@ -23,6 +23,10 @@ _global_script_class_icons={
 config/name="Gameprime-Shmup"
 config/icon="res://icon.png"
 
+[autoload]
+
+ScreenManager="*res://screens/ScreenManager.tscn"
+
 [display]
 
 window/size/width=240
@@ -43,6 +47,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_2="Hero Bullet"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Enemy Bullet"
+2d_physics/layer_5="Zones"
 
 [physics]
 
