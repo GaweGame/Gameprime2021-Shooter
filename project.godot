@@ -21,6 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Gameprime-Shmup"
+run/main_scene="res://screens/Title.tscn"
 config/icon="res://icon.png"
 
 [autoload]
